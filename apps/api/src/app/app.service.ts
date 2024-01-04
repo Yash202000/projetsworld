@@ -42,6 +42,51 @@ export class AppService {
   }
 
 
+  //patch user
+  async patchUser(data: {email: string, password: string}){
+    console.log("inside the create user method data: ",data);
+    // check if user exists...
+    const tempUser = await prisma.user.findFirst({
+      where:{
+        email: data.email
+      }
+    })
+    if(tempUser){
+      const updatedUser = await prisma.user.update({
+        where:{
+          email: data.email
+        },
+        data: {
+          password: data.password
+        }
+      })
+
+      return updatedUser;
+
+    }
+    throw new HttpException("user not exist", HttpStatus.BAD_REQUEST);
+
+  }
+
+
+  async deleteUser(id: number){
+    const user = await prisma.user.findFirst({
+      where:{
+        id: id
+      }
+    })
+
+    if(!user) throw new HttpException("user not exist", HttpStatus.BAD_REQUEST);
+
+    const deletedUser = await prisma.user.delete({
+      where:{
+        id: id
+      }
+    })
+    return deletedUser;
+  }
+
+
   getData(): { message: string } {
     return { message: 'Hello API' };
   }
