@@ -10,11 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
   id      Int      @id @default(autoincrement())
   email   String   @unique
+<<<<<<< HEAD
   passeord   String
+=======
+  password    String
+>>>>>>> c3c7a86bf39de2c6a0f536221627cb03c88ff3ce
   // posts   Post[]
   // profile Profile?
 }

@@ -8,7 +8,11 @@ import { Route, Routes, Link } from 'react-router-dom';
 export function App() {
   return (
     <div>
+<<<<<<< HEAD
       <SignInSide/>
+=======
+      <SignInSide />
+>>>>>>> c3c7a86bf39de2c6a0f536221627cb03c88ff3ce
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
