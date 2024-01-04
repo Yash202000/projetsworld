@@ -1,14 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
 
-import NxWelcome from './nx-welcome';
+import SignInSide from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="Ganesh"/>
+      <SignInSide/>
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
