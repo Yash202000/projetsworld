@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post, Patch, Delete, Param} from '@nestjs/common';
+import { Body, Controller, Get,Post, Put } from '@nestjs/common';
+import { Delete, Param, Patch } from '@nestjs/common/decorators';
 
 import { AppService } from './app.service';
 
@@ -12,21 +13,21 @@ export class AppController {
   }
 
   @Post('/create-user')
-  createUser(@Body() data : {email : string, password : string}) {
+  createUser(@Body() data: {email: string, password: string}) {
     console.log(data);
     return this.appService.createUser(data);
   }
 
-  @Patch('/patchUser')
-  patchUser(@Body() data : {email : string, password : string}) {
+
+  @Patch('/patch-user')
+  patchUser(@Body() data: {email: string, password: string}) {
     console.log(data);
     return this.appService.patchUser(data);
   }
 
-  @Delete("deleteUser/:id")
-  deleteUser(@Param('id') id : number) {
-    console.log("inside the delete user method id", id);
-    
+
+  @Delete("delete-user/:id")
+  deleteUser(@Param('id') id: number){
     return this.appService.deleteUser(+id);
   }
 }
