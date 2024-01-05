@@ -17,3 +17,11 @@ model User {
   // posts   Post[]
   // profile Profile?
 }
+
+model Post {
+  id      Int      @id @default(autoincrement())
+  title   String   
+  img_url    String
+  // posts   Post[]
+  // profile Profile?
+}
