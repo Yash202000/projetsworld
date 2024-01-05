@@ -1,13 +1,41 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body,Controller, Delete, Get,Param,Patch,Post } from '@nestjs/common';
 
 import { AppService } from './app.service';
+import { ok } from 'assert';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getData() {
-    return this.appService.getData();
+  @Get('/all-users')
+  getUsers() {
+    return this.appService.getAllUser();
+  }
+  @Post('/create-users')
+  createUsers(@Body() data :{email : string , password : string}) {
+
+    console.log(data);
+    return this.appService.createUser(data);
+  }
+
+ @Patch('/patch-user')
+  patchUser(@Body() data :{email : string , password : string}) {
+
+    console.log(data);
+    return this.appService.patchUser(data);
+  }
+
+@Delete('delete-user/:id')
+  deleteUser(@Param('id')id: number){
+
+    console.log("inside user deleted ",id);
+
+    return this.appService.deletUser(+id)
+
   }
 }
+
+
+
+
+
