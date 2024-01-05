@@ -1,4 +1,5 @@
-import { Body,Controller, Delete, Get,Param,Patch,Post } from '@nestjs/common';
+import { Body, Controller, Get,Post, Put } from '@nestjs/common';
+import { Delete, Param, Patch } from '@nestjs/common/decorators';
 
 import { AppService } from './app.service';
 import { ok } from 'assert';

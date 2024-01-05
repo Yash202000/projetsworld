@@ -13,12 +13,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import * as yup from 'yup';
+import axios from 'axios';
+
+
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        projetsworld
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -29,14 +33,43 @@ function Copyright(props: any) {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
+const validationSchema = yup.object({
+  email: yup.string().email('Invalid email address').required('Email is required'),
+  password: yup.string().required('Password is required'),
+});
+
+
 export default function SignInSide() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+  const handleSubmit =   async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
+   
+    try {
+       
+    await validationSchema.validate({
+      email: data.get('email') as string,
+      password: data.get('password') as string,
+    });
+    
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    const response = await axios.post('http://localhost:3000/api/create-user', {
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+
+    console.log(response)
+    console.log('user created successfully');
+      
+    } catch (error) {
+      console.log(error)
+    }
+
   };
 
   return (
@@ -70,8 +103,8 @@ export default function SignInSide() {
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
+            <Typography component="h1" variant="h3">
+              Sign Up
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -104,7 +137,7 @@ export default function SignInSide() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Sign Up
               </Button>
               <Grid container>
                 <Grid item xs>
@@ -114,7 +147,7 @@ export default function SignInSide() {
                 </Grid>
                 <Grid item>
                   <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"Already have an account? Sign In"}
                   </Link>
                 </Grid>
               </Grid>
