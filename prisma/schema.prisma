@@ -10,9 +10,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// model User {
+//   id       Int     @id @default(autoincrement())
+//   email    String  @unique
+//   password String
+// }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  password  String
+model Student {
+  id     Int     @id @default(autoincrement())
+  name   String
+  email  String @unique
+  year   Int
+
+  courseId Int?
+  course Course? @relation(fields: [courseId], references: [id]) 
+}
+
+model Course {
+  id       Int       @id @default(autoincrement())
+  name     String
+
+  students Student[]
 }

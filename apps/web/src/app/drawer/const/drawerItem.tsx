@@ -40,6 +40,6 @@ export const mainDrawerItems = [
         id: 5,
         icon: <SettingsInputComponentIcon />,
         label: 'Machine learning',
-        route: 'machinelearning',
+        route: 'machine-learning',
     },
 ]

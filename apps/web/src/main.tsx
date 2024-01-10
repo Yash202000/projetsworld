@@ -7,22 +7,25 @@ import Hosting from './app/drawer/pages/Hosting/Hosting';
 import MachineLearning from './app/drawer/pages/MachineLearning/machineLearning';
 import Storage from './app/drawer/pages/storage/storage';
 import App from './app/app';
-
+import { ThemeProvider } from '@mui/material/styles';
+import { dashboardTheme } from './app/dashboardTheme';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route path="authentication" element={<Authentication />} />
-            <Route path="database" element={<Database />} />
-            <Route path="functions" element={<Functions />} />
-            <Route path="hosting" element={<Hosting />} />
-            <Route path="machinelearning" element={<MachineLearning />} />
-            <Route path="storage" element={<Storage />} />
-          </Route>
-        </Routes>
-  </BrowserRouter>
+  <ThemeProvider theme={dashboardTheme}>
+    <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route path="authentication" element={<Authentication />} />
+              <Route path="database" element={<Database />} />
+              <Route path="functions" element={<Functions />} />
+              <Route path="hosting" element={<Hosting />} />
+              <Route path="machine-learning" element={<MachineLearning />} />
+              <Route path="storage" element={<Storage />} />
+            </Route>
+          </Routes>
+    </BrowserRouter>
+  </ThemeProvider>
 );
