@@ -8,9 +8,10 @@ interface CommonButtonProps {
     size: string;
     sx: object;
     variant: string;
+    onClick: any;
 }
 
-const CommonButton = ({children,color,disabled,size,sx,variant}: CommonButtonProps) => {
+const CommonButton = ({children,color,disabled,size,sx,variant, onClick}: CommonButtonProps) => {
     return (
         <Button
             color={color as 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | undefined}
@@ -18,6 +19,7 @@ const CommonButton = ({children,color,disabled,size,sx,variant}: CommonButtonPro
             size={size as 'small' | 'medium' | 'large' | undefined}
             variant={variant as 'text' | 'outlined' | 'contained' | undefined}
             sx={sx}
+            onClick={onClick}
         >
             {children}
         </Button>
