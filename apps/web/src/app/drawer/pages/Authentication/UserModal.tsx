@@ -7,24 +7,30 @@ import axios from 'axios';
 
 const UserModal = ({ open, onClose }:any) => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [id, setId] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handleEmailChange = (e:any) => {
     setEmail(e.target.value);
   };
 
-  const handlePasswordChange = (e:any) => {
-    setPassword(e.target.value);
+  const handleIdChange = (e:any) => {
+    setId(e.target.value);
+  };
+  
+  const handlePhoneChange = (e:any) => {
+    setPhone(e.target.value);
   };
 
   const handleAddUser = () => {
     // Add user logic here, using the email and password state values
-    console.log('Adding user:', { email, password });
+    console.log('Adding user:', { id, email, phone });
     // post request to add user
 
-    axios.post('http://192.168.215.120:3000/api/create-user', {
+    axios.post('http://localhost:3000/api/create-user', {
+      id: id,  
       email: email,
-      password: password
+      phone: phone
     })
 
     console.log('user added');
@@ -49,7 +55,15 @@ const UserModal = ({ open, onClose }:any) => {
       >
 
         <TextField
-          label="Email"
+          label="id"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={id}
+          onChange={handleIdChange}
+        />
+        <TextField
+          label="email"
           variant="outlined"
           fullWidth
           margin="normal"
@@ -57,13 +71,12 @@ const UserModal = ({ open, onClose }:any) => {
           onChange={handleEmailChange}
         />
         <TextField
-          label="Password"
-          type="password"
+          label="phone"
           variant="outlined"
           fullWidth
           margin="normal"
-          value={password}
-          onChange={handlePasswordChange}
+          value={phone}
+          onChange={handlePhoneChange}
         />
         <Button variant="contained" onClick={handleAddUser}>
           Add User

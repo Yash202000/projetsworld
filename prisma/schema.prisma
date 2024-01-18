@@ -16,19 +16,26 @@ datasource db {
 //   password String
 // }
 
-model Student {
-  id     Int     @id @default(autoincrement())
-  name   String
-  email  String @unique
-  year   Int
+// model Student {
+//   id     Int     @id @default(autoincrement())
+//   name   String
+//   email  String @unique
+//   year   Int
 
-  courseId Int?
-  course Course? @relation(fields: [courseId], references: [id]) 
-}
+//   courseId Int?
+//   course Course? @relation(fields: [courseId], references: [id]) 
+// }
 
-model Course {
-  id       Int       @id @default(autoincrement())
-  name     String
+// model Course {
+//   id       Int       @id @default(autoincrement())
+//   name     String
 
-  students Student[]
+//   students Student[]
+// }
+
+model User {
+  id       Int     @id @default(autoincrement())
+  username       String     @unique
+  email    String  @unique
+  phone    String  @unique
 }
